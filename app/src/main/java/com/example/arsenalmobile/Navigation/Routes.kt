@@ -7,4 +7,5 @@ sealed class Routes(val route: String) {
     object UserGames: Routes("user_games")
     object Loading: Routes("loading")
     object InfoBlaster: Routes("info_blaster")
+    object ScreenUserRegistration: Routes("user_registration")
 }

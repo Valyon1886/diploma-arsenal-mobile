@@ -1,4 +1,4 @@
-package com.example.arsenalmobile.Navigation.Screen
+package com.example.arsenalmobile.Screen
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -85,11 +85,11 @@ fun ScreenUserRegistration(userApi: UserController, navController: NavController
     fun saveUser(uploadUri: Uri?){
         CoroutineScope(Dispatchers.IO).launch {
             Log.d("UserInput = ", "${NickNameState.text}, ${secondNameState.text}, ${lastNameState.text}, ${auth.currentUser?.uid.toString()}, ${uploadUri.toString()}")
-            val userInput = User(auth.currentUser?.uid.toString(), NickNameState.text, uploadUri.toString(), "admin", mutableListOf<Blaster>())
+            val userInput = User(auth.currentUser?.uid.toString(), NickNameState.text, uploadUri.toString(), "admin", mutableListOf(), mutableListOf())
             userApi.addUser(userInput)
 
             withContext(Dispatchers.Main) {
-                navController.navigate("tasks")
+                navController.navigate("profile")
             }
         }
     }

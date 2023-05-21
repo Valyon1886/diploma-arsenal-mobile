@@ -7,6 +7,6 @@ data class User(
     var image: String?,  // Аватар пользователя
     var role: String,  // Роль пользователя (user или admin)
     var arsenal: MutableList<Blaster>?,  // Список оборудования, добавленных пользователем в арсенал
-//    var games: MutableList<Game>?,  // Список игровых сессий, в которых учавствовал пользователь
+    var games: MutableList<Game>?,  // Список игровых сессий, в которых учавствовал пользователь
 //    var id: Long?
 )

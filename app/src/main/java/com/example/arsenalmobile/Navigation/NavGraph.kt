@@ -27,15 +27,7 @@ import com.example.arsenalmobile.Controllers.GameController
 import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.MainActivity
 import com.example.arsenalmobile.Models.User
-import com.example.arsenalmobile.Navigation.Screen.ActiveGames
-import com.example.arsenalmobile.Navigation.Screen.CatalogBlasters
-import com.example.arsenalmobile.Navigation.Screen.CreateGame
-import com.example.arsenalmobile.Navigation.Screen.InfoBlaster
-import com.example.arsenalmobile.Navigation.Screen.Loading
-import com.example.arsenalmobile.Navigation.Screen.Profile
-import com.example.arsenalmobile.Navigation.Screen.UserBlasters
-import com.example.arsenalmobile.Navigation.Screen.UserGames
-import com.example.arsenalmobile.Navigation.Screen.UserTest
+import com.example.arsenalmobile.Screen.*
 //import com.example.arsenalmobile.Screen.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
@@ -77,6 +69,9 @@ fun NavGraph(
         composable("loading") {
             Loading()
         }
+        composable("user_registration") {
+            ScreenUserRegistration(userController, navHostController, auth, mainActivity)
+        }
         composable("profile") {
             Profile(userController, auth, mainActivity, user!!, navHostController)
         }
@@ -116,10 +111,15 @@ fun NavGraph(
     LaunchedEffect(Unit) {
         delay(5000)
         isLoading.set(true)
-        user = userController.findUser(1)
+        checkIdToken = userController.checkIdTokenUser(auth.currentUser?.uid.toString()) == true
+        if (checkIdToken) user = userController.getUserByIdToken(auth.currentUser?.uid.toString())
         Log.d("User ", "${user}")
         isLoading.set(false)
-        navHostController.navigate("profile")
+        if (user == null) {
+            navHostController.navigate("user_registration")
+        } else {
+            navHostController.navigate("profile")
+        }
     }
 
 }
