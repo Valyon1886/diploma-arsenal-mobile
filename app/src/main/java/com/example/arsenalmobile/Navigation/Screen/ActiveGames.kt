@@ -1,4 +1,4 @@
-package com.example.arsenalmobile.Screen
+package com.example.arsenalmobile.Navigation.Screen
 
 import android.annotation.SuppressLint
 import android.os.Build

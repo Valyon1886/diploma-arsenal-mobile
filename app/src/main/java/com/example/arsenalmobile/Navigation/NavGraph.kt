@@ -27,7 +27,16 @@ import com.example.arsenalmobile.Controllers.GameController
 import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.MainActivity
 import com.example.arsenalmobile.Models.User
-import com.example.arsenalmobile.Screen.*
+import com.example.arsenalmobile.Navigation.Screen.ActiveGames
+import com.example.arsenalmobile.Navigation.Screen.CatalogBlasters
+import com.example.arsenalmobile.Navigation.Screen.CreateGame
+import com.example.arsenalmobile.Navigation.Screen.InfoBlaster
+import com.example.arsenalmobile.Navigation.Screen.Loading
+import com.example.arsenalmobile.Navigation.Screen.Profile
+import com.example.arsenalmobile.Navigation.Screen.UserBlasters
+import com.example.arsenalmobile.Navigation.Screen.UserGames
+import com.example.arsenalmobile.Navigation.Screen.UserTest
+//import com.example.arsenalmobile.Screen.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 import java.util.concurrent.atomic.AtomicBoolean

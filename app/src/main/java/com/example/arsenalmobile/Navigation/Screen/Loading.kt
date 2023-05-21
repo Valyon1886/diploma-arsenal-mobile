@@ -1,4 +1,4 @@
-package com.example.arsenalmobile.Screen
+package com.example.arsenalmobile.Navigation.Screen
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
