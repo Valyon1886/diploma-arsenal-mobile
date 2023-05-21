@@ -8,7 +8,7 @@ interface BlasterController {
     fun createBlaster(@Body blaster: Blaster): Blaster
 
     @GET("blaster/find/{id}")
-    fun findBlaster(@Path("id") id: Long): Blaster
+    suspend fun findBlaster(@Path("id") id: Long): Blaster
 
     @GET("blaster/all")
     suspend fun getBlasters(): List<Blaster>

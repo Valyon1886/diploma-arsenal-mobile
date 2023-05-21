@@ -1,18 +1,17 @@
 package com.example.arsenalmobile.Navigation.Screen
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.shapes.Shape
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 
 import androidx.compose.runtime.*
@@ -21,19 +20,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.arsenalmobile.Controllers.BlasterController
 import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.MainActivity
 import com.example.arsenalmobile.Models.Blaster
 import com.example.arsenalmobile.Models.User
-import com.example.arsenalmobile.Navigation.Routes
 import com.example.arsenalmobile.R
 import com.example.arsenalmobile.ViewModels.CardBlaster
 import com.example.arsenalmobile.ui.theme.BackColor
-import com.example.arsenalmobile.ui.theme.BoxColor
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -47,12 +44,27 @@ fun CatalogBlasters(
     navController: NavController
 ) {
     val scope = rememberCoroutineScope()
-    var settingExpand by remember { mutableStateOf(false) }
+    var filterExpand by remember { mutableStateOf(false) }
+    var categoriesExpand by remember { mutableStateOf(false) }
+    var seriesExpand by remember { mutableStateOf(false) }
     var listBlaster by remember { mutableStateOf<List<Blaster>>(emptyList()) }
+    var listBlasterFilter by remember { mutableStateOf<List<Blaster>>(emptyList()) }
 
     LaunchedEffect(true){
         listBlaster = blasterController.getBlasters()
+        listBlasterFilter = listBlaster
     }
+
+    var series: MutableList<String> = listBlaster
+        .mapNotNull{blaster -> blaster.series}
+        .distinct()
+        .toMutableList()
+    var categories: MutableList<String> = listBlaster
+        .mapNotNull{blaster -> blaster.category}
+        .distinct()
+        .toMutableList()
+
+    Log.d("series = ", "$series")
 
     Scaffold (
         topBar = {
@@ -65,10 +77,12 @@ fun CatalogBlasters(
                         color = Color.Black
                     )
                 },
-                backgroundColor = BackColor,
+                backgroundColor = Color.Yellow,
                 actions = {
                     IconButton(onClick = {
-                        settingExpand = !settingExpand
+                        filterExpand = !filterExpand
+                        categoriesExpand = false
+                        seriesExpand = false
                     }) {
                         Icon(
                             painter = painterResource(id = R.drawable.baseline_tune_24),
@@ -80,19 +94,103 @@ fun CatalogBlasters(
             )
         },
         content = {
-            Column(){
-                AnimatedVisibility(visible = settingExpand) {
-                    Box(modifier = Modifier.background(color = BoxColor)) {
-                        Row() {
-                            Text(text = "Серия")
-                            Text(text = "Патроны")
+            Column(modifier = Modifier.background(color = BackColor)){
+                AnimatedVisibility(visible = filterExpand) {
+                    Column(){
+                        Box(
+                            modifier = Modifier
+                                .background(color = Color.White)
+                                .fillMaxWidth()
+                        ) {
+                            val filterPointList = listOf<String>("Серия", "Категория")
+                            LazyVerticalGrid(
+                                columns = GridCells.Fixed(2),
+                                content = {
+                                    items(filterPointList) { item ->
+                                        Text(
+                                            text = item,
+                                            modifier = Modifier
+                                                .border(2.dp, Color.Red)
+                                                .clickable {
+                                                    if (item == "Серия") {
+                                                        seriesExpand = true
+                                                        categoriesExpand = false
+                                                    }
+                                                    if (item == "Категория") {
+                                                        seriesExpand = false
+                                                        categoriesExpand = true
+                                                    }
+                                                },
+                                            color = Color.Black,
+                                            fontSize = 15.sp,
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                        AnimatedVisibility(visible = seriesExpand) {
+                            Box(
+                                modifier = Modifier
+                                    .background(color = Color.White)
+                                    .fillMaxWidth()
+                            ) {
+                                LazyVerticalGrid(
+                                    columns = GridCells.Fixed(3),
+                                    content = {
+                                        items(series) { item ->
+                                            Text(
+                                                modifier = Modifier
+                                                    .border(2.dp, Color.Red)
+                                                    .clickable {
+                                                        listBlasterFilter =
+                                                            listBlaster.filter { it.series == item }
+                                                        Log.d("filter ", "$listBlasterFilter")
+                                                    },
+                                                text = item,
+                                                color = Color.Black,
+                                                fontSize = 15.sp,
+                                                textAlign = TextAlign.Center,
+                                            )
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                        AnimatedVisibility(visible = categoriesExpand) {
+                            Box(
+                                modifier = Modifier
+                                    .background(color = Color.White)
+                                    .fillMaxWidth()
+                            ) {
+                                LazyVerticalGrid(
+                                    columns = GridCells.Fixed(2),
+                                    content = {
+                                        items(categories) { item ->
+                                            Text(
+                                                modifier = Modifier
+                                                    .border(2.dp, Color.Red)
+                                                    .clickable {
+                                                        listBlasterFilter =
+                                                            listBlaster.filter { it.category == item }
+                                                        Log.d("filter ", "$listBlasterFilter")
+                                                    },
+                                                text = item,
+                                                color = Color.Black,
+                                                fontSize = 15.sp,
+                                                textAlign = TextAlign.Center,
+                                            )
+                                        }
+                                    }
+                                )
+                            }
                         }
                     }
                 }
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     content = {
-                        items(listBlaster) { item ->
+                        items(listBlasterFilter) { item ->
                             CardBlaster(item, navController)
                         }
                     }

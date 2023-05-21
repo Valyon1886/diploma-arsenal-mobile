@@ -2,7 +2,7 @@ package com.example.arsenalmobile.Models
 
 data class Blaster(
     var blasterName: String?,  // Название бластера
-//    var ammo: MutableList<Ammo>?, // Список используемых типов боеприпасов
+    var ammo: MutableList<Ammo>?, // Список используемых типов боеприпасов
     var amount: Int?,  //  Количество боеприпасов
     var image: String?,  //  Изображение бластера (отображается в каталоге)
     var series: String?,  //  Название серии к которой принадлежит бластер
