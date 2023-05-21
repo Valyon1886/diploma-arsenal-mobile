@@ -11,7 +11,7 @@ interface BlasterController {
     fun findBlaster(@Path("id") id: Long): Blaster
 
     @GET("blaster/all")
-    fun getBlasters(): List<Blaster>
+    suspend fun getBlasters(): List<Blaster>
 
     @PUT("blaster/{id}")
     fun updateBlaster(@Path("id") id: Long, @Body blaster: Blaster): Blaster

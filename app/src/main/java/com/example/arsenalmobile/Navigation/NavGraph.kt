@@ -87,7 +87,11 @@ fun NavGraph(
             CreateGame()
         }
         composable("blasters") {
-            CatalogBlasters(userController, auth, mainActivity, user!!, navHostController)
+            CatalogBlasters(userController, blasterController, auth, mainActivity, user!!, navHostController)
+        }
+        composable("${Routes.InfoBlaster.route}/{id}") { navBackStack ->
+            val blasterId = navBackStack.arguments?.getString("id")?.toInt() ?: 0
+            InfoBlaster(blasterId = blasterId, blasterController, navHostController, userController, user!!, mainActivity)
         }
 //        composable("${Routes.Material.route}/{id}") { navBackStack ->
 //            val jobId = navBackStack.arguments?.getString("id")?.toInt() ?: 0
@@ -96,10 +100,7 @@ fun NavGraph(
 //        composable(Routes.CreateJob.route) {
 //            ScreenCreateJob(jobApi, navHostController)
 //        }
-//        composable("${Routes.SubTask.route}/{id}") { navBackStack ->
-//            val jobId = navBackStack.arguments?.getString("id")?.toInt() ?: 0
-//            ScreenSubTask(jobId = jobId, jobApi, navHostController, userApi, user!!, mainActivity)
-//        }
+
 
     }
 
