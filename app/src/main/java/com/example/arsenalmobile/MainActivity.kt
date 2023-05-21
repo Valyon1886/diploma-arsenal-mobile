@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.arsenalmobile.Screen.MainScreen
 import com.example.arsenalmobile.ui.theme.ArsenalMobileTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -22,15 +23,13 @@ class MainActivity : ComponentActivity() {
     lateinit var auth: FirebaseAuth
 //    var imageUri: Image? = null
 
-
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-//        setContent {
-//            MainScreen(auth, mainActivity = this@MainActivity)
-//        }
+        setContent {
+            MainScreen(auth, mainActivity = this@MainActivity)
+        }
         Log.d("ID = ", "${auth.currentUser?.uid}")
     }
 
@@ -39,32 +38,3 @@ class MainActivity : ComponentActivity() {
         finish()
     }
 }
-//class MainActivity : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            ArsenalMobileTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-//                    Greeting("Android")
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//@Composable
-//fun Greeting(name: String) {
-//    Text(text = "Hello $name!")
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun DefaultPreview() {
-//    ArsenalMobileTheme {
-//        Greeting("Android")
-//    }
-//}
