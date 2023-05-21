@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "921485056704",
+    "firebase_url": "https://arsenal-c5752-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "arsenal-c5752",
+    "storage_bucket": "arsenal-c5752.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921485056704:android:65e169439829f050e76b25",
+        "android_client_info": {
+          "package_name": "com.example.arsenalmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921485056704-csoqvgj2i0jos8eqq788oolpdunkmg5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChgZO7TCuUWU9Cri0hjVwsnx34DCdDiLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921485056704-csoqvgj2i0jos8eqq788oolpdunkmg5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
