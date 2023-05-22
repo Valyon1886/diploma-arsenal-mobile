@@ -6,9 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.util.Log
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -19,7 +16,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -27,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,27 +30,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph
-import androidx.navigation.NavHost
-import androidx.viewpager2.widget.ViewPager2
-import coil.Coil
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
-import com.example.arsenalmobile.Auth.RoutesAuth
 //import com.example.arsenalmobile.Entity.Material
 import com.example.arsenalmobile.MainActivity
 //import com.example.arsenalmobile.Models.JobInput
-import com.example.arsenalmobile.Models.User
-import com.example.arsenalmobile.Navigation.BottomItem
-import com.example.arsenalmobile.Navigation.Routes
 import com.example.arsenalmobile.R
 //import com.example.arsenalmobile.Retrofit.JobApi
 import com.example.arsenalmobile.Controllers.UserController
-import com.example.arsenalmobile.Models.Blaster
+import com.example.arsenalmobile.Entity.UserInput
 //import com.example.arsenalmobile.ScreenTasks.TaskItem
 //import com.example.arsenalmobile.ui.theme.BGColor
 import com.example.arsenalmobile.ui.theme.NavColor
@@ -71,7 +56,7 @@ import kotlinx.coroutines.withContext
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ScreenUserRegistration(userApi: UserController, navController: NavController, auth: FirebaseAuth, mainActivity: MainActivity) {
+fun UserRegistration(userApi: UserController, navController: NavController, auth: FirebaseAuth, mainActivity: MainActivity) {
     var NickNameState by remember { mutableStateOf(TextFieldValue()) }
     var secondNameState by remember { mutableStateOf(TextFieldValue()) }
     var lastNameState by remember { mutableStateOf(TextFieldValue()) }
@@ -85,7 +70,7 @@ fun ScreenUserRegistration(userApi: UserController, navController: NavController
     fun saveUser(uploadUri: Uri?){
         CoroutineScope(Dispatchers.IO).launch {
             Log.d("UserInput = ", "${NickNameState.text}, ${secondNameState.text}, ${lastNameState.text}, ${auth.currentUser?.uid.toString()}, ${uploadUri.toString()}")
-            val userInput = User(auth.currentUser?.uid.toString(), NickNameState.text, uploadUri.toString(), "admin", mutableListOf(), mutableListOf())
+            val userInput = UserInput(auth.currentUser?.uid.toString(), NickNameState.text, uploadUri.toString(), "admin", mutableListOf(), mutableListOf())
             userApi.addUser(userInput)
 
             withContext(Dispatchers.Main) {
@@ -148,7 +133,7 @@ fun ScreenUserRegistration(userApi: UserController, navController: NavController
                     Text(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth(),
-                        text = "Анкета бригадира",
+                        text = "Профиль",
                         color = Color.White
                     )
                 },

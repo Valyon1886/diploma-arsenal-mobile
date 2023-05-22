@@ -5,6 +5,9 @@ data class Game (
     var amount: Int,  // Минимальное количество участников
     var image: String,  // Иконка игрового сеанса
     var mode: String,  // Игровой режим (правила игрового сеанса)
-    var users: MutableList<User>?,  // Список
-    var id: Long?
+    var description: String,
+    var destination: String,
+    var users: MutableList<Long>?,  // Список
+    var isActive: Boolean,
+    var id: Long
 )

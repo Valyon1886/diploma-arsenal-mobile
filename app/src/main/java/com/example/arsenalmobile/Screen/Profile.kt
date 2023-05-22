@@ -63,52 +63,56 @@ fun Profile(
     var storageRef = storage.reference
     var imDB: ImageView? = null
 
-//    fun saveUser(uploadUri: Uri?){
-//        CoroutineScope(Dispatchers.IO).launch {
-//            Log.d("imgSrc = ", " ${uploadUri.toString()}")
-//            val userImg = UserImg(uploadUri.toString())
-//            userApi.updateUserImg(user.id, userImg)
-//        }
-//    }
-//
-//    fun uploadImage() {
-//        storageRef = Firebase.storage.reference.child("images/${auth.currentUser?.uid}/${imageUriState.value?.lastPathSegment}")
-//        val uploadTask = imageUriState.value?.let { storageRef.putFile(it) }
-//
-//        uploadTask?.continueWithTask { task ->
-//            if (!task.isSuccessful) {
-//                task.exception?.let { throw it }
-//            }
-//            storageRef.downloadUrl
-//        }?.addOnCompleteListener { task ->
-//            if (task.isSuccessful) {
-//                uploadUri = task.result
-//                saveUser(uploadUri)
-//            }
-//        }
-//    }
-//
-//    val launcher = rememberLauncherForActivityResult(
-//        contract = ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            result.data?.data?.let { uri ->
-//                imageUriState.value = uri
-//            }
-//            uploadImage()
-//        }
-//    }
-//
-//    fun getImage(){
-//        val intentChooser = Intent(Intent.ACTION_GET_CONTENT).apply {
-//            type = "image/*"
-//        }
-//        launcher.launch(intentChooser)
-//    }
+    fun saveUser(uploadUri: Uri?){
+        CoroutineScope(Dispatchers.IO).launch {
+            Log.d("imgSrc = ", " ${uploadUri.toString()}")
+            val userImg = UserImg(uploadUri.toString())
+            user.id?.let { userController.updateUserImg(it, userImg) }
+        }
+    }
+
+    fun uploadImage() {
+        storageRef = Firebase.storage.reference.child("images/${auth.currentUser?.uid}/${imageUriState.value?.lastPathSegment}")
+        val uploadTask = imageUriState.value?.let { storageRef.putFile(it) }
+
+        uploadTask?.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let { throw it }
+            }
+            storageRef.downloadUrl
+        }?.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                uploadUri = task.result
+                saveUser(uploadUri)
+            }
+        }
+    }
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.let { uri ->
+                imageUriState.value = uri
+            }
+            uploadImage()
+        }
+    }
+
+    fun getImage(){
+        val intentChooser = Intent(Intent.ACTION_GET_CONTENT).apply {
+            type = "image/*"
+        }
+        launcher.launch(intentChooser)
+    }
 
     val painter = imageUriState.value?.let { uri ->
         rememberAsyncImagePainter(model = uri)
-    } ?: painterResource(id = R.drawable.image)
+    } ?: rememberAsyncImagePainter(model = userImgSrc?.image)
+
+    LaunchedEffect(true){
+        userImgSrc = userController.getUserByIdToken(auth.currentUser?.uid.toString())
+    }
 
     Scaffold(
         topBar = {
@@ -178,7 +182,7 @@ fun Profile(
                                 .clip(CircleShape)
                                 .background(Color.White)
                                 .clickable {
-//                                    getImage()
+                                    getImage()
                                 }
                                 .border(2.dp, color = Color.Black, CircleShape)
                                 .scale(0.75f)

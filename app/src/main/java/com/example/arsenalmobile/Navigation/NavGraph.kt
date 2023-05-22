@@ -70,7 +70,7 @@ fun NavGraph(
             Loading()
         }
         composable("user_registration") {
-            ScreenUserRegistration(userController, navHostController, auth, mainActivity)
+            UserRegistration(userController, navHostController, auth, mainActivity)
         }
         composable("profile") {
             Profile(userController, auth, mainActivity, user!!, navHostController)
@@ -85,7 +85,11 @@ fun NavGraph(
             UserTest()
         }
         composable("games") {
-            ActiveGames(userController, auth, mainActivity, user!!, navHostController)
+            ActiveGames(userController, gameController, auth, mainActivity, user!!, navHostController)
+        }
+        composable("${Routes.InfoGame.route}/{id}") { navBackStack ->
+            val gamerId = navBackStack.arguments?.getString("id")?.toLong() ?: 0
+            InfoGame(gameId = gamerId, gameController, navHostController, userController, user!!, mainActivity)
         }
         composable(Routes.CreateGame.route) {
             CreateGame()

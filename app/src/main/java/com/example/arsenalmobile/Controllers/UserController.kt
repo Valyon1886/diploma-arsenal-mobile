@@ -1,6 +1,9 @@
 package com.example.arsenalmobile.Controllers
 
+import com.example.arsenalmobile.Entity.UserInput
 import com.example.arsenalmobile.Models.User
+
+import com.example.arsenalmobile.Models.UserImg
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -15,9 +18,10 @@ interface UserController {
 
     @GET("user/get/idToken/{idToken}")
     suspend fun getUserByIdToken(@Path("idToken") idToken: String): User
-
+    @PUT("user/updateNotFull/{idUser}")
+    suspend fun updateUserImg(@Path("idUser") idUser: Long, @Body userImg: UserImg): User
     @POST("user/new")
-    suspend fun addUser(@Body user: User): User
+    suspend fun addUser(@Body user: UserInput): User
 
     @GET("user/test")
     suspend fun testos(): String = "sdfghjkl"

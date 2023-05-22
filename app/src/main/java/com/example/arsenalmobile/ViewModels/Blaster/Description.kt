@@ -21,7 +21,7 @@ fun Description(blaster: Blaster?) {
 
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Характеристика")
+            Text(text = "Характеристика")  // добавить строку с параметрами класса
             Text(text = "${blaster?.author}")
         }
     }
