@@ -21,7 +21,7 @@ import com.example.arsenalmobile.ui.theme.MegaColor
 
 @Composable
 fun Loading() {
-    val load = "Обновление "
+    val load = "Обновление"
     val progressValue = 2f
     val infiniteTransition = rememberInfiniteTransition()
 
@@ -39,7 +39,7 @@ fun Loading() {
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
-            Spacer(modifier = Modifier.width(width = 30.dp))
+            Spacer(modifier = Modifier.height(height = 10.dp))
             LinearProgressIndicator(
                 modifier = Modifier.height(8.dp),
                 color = MegaColor
