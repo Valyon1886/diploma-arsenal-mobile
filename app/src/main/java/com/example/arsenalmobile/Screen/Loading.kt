@@ -6,6 +6,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.example.arsenalmobile.ui.theme.MegaColor
 
 @Composable
+@Preview
 fun Loading() {
     val load = "Обновление "
     val progressValue = 2f
@@ -32,19 +34,23 @@ fun Loading() {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = load,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
             Spacer(modifier = Modifier.width(width = 20.dp))
-            CircularProgressIndicator(
-                modifier = Modifier.size(40.dp),
-                strokeWidth = 8.dp,
-                color = MegaColor,
-                progress = progressAnimationValue
+            LinearProgressIndicator(
+                modifier = Modifier.height(8.dp),
+                color = MegaColor
             )
+//            CircularProgressIndicator(
+//                modifier = Modifier.size(40.dp),
+//                strokeWidth = 8.dp,
+//                color = MegaColor,
+//                progress = progressAnimationValue
+//            )
         }
     }
 }
