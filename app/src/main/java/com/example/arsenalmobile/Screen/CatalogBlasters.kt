@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -35,13 +36,14 @@ import com.google.firebase.auth.FirebaseAuth
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
+@Preview
 fun CatalogBlasters(
-    userController: UserController,
-    blasterController: BlasterController,
-    auth: FirebaseAuth,
-    mainActivity: MainActivity,
-    user: User,
-    navController: NavController
+//    userController: UserController,
+//    blasterController: BlasterController,
+//    auth: FirebaseAuth,
+//    mainActivity: MainActivity,
+//    user: User,
+//    navController: NavController
 ) {
     val scope = rememberCoroutineScope()
     var filterExpand by remember { mutableStateOf(false) }
@@ -51,7 +53,7 @@ fun CatalogBlasters(
     var listBlasterFilter by remember { mutableStateOf<List<Blaster>>(emptyList()) }
 
     LaunchedEffect(true){
-        listBlaster = blasterController.getBlasters()
+//        listBlaster = blasterController.getBlasters()
         listBlasterFilter = listBlaster
     }
 
@@ -67,6 +69,7 @@ fun CatalogBlasters(
     Log.d("series = ", "$series")
 
     Scaffold (
+        backgroundColor = BackColor,
         topBar = {
             TopAppBar(
                 title = {
@@ -110,7 +113,7 @@ fun CatalogBlasters(
                                         Text(
                                             text = item,
                                             modifier = Modifier
-                                                .border(2.dp, Color.Red)
+                                                .border(2.dp, Color.DarkGray)
                                                 .clickable {
                                                     if (item == "Серия") {
                                                         seriesExpand = true
@@ -169,7 +172,7 @@ fun CatalogBlasters(
                                         items(categories) { item ->
                                             Text(
                                                 modifier = Modifier
-                                                    .border(2.dp, Color.Red)
+                                                    .border(2.dp, Color.DarkGray)
                                                     .clickable {
                                                         listBlasterFilter =
                                                             listBlaster.filter { it.category == item }
@@ -191,7 +194,7 @@ fun CatalogBlasters(
                     columns = GridCells.Fixed(2),
                     content = {
                         items(listBlasterFilter) { item ->
-                            CardBlaster(item, navController)
+//                            CardBlaster(item, navController)
                         }
                     }
                 )
