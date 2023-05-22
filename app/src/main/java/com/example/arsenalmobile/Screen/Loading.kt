@@ -13,13 +13,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.arsenalmobile.ui.theme.MegaColor
 
 @Composable
 fun Loading() {
-    val load = "Подготавливаем..."
-    val progressValue = 1f
+    val load = "Обновление "
+    val progressValue = 2f
     val infiniteTransition = rememberInfiniteTransition()
 
     val progressAnimationValue by infiniteTransition.animateFloat(
@@ -31,17 +33,17 @@ fun Loading() {
         modifier = Modifier.fillMaxSize()
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(50.dp),
-                strokeWidth = 7.dp,
-                color = Color.Red,
-                progress = progressAnimationValue
-            )
-            Spacer(modifier = Modifier.width(width = 20.dp))
             Text(
                 text = load,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
+            )
+            Spacer(modifier = Modifier.width(width = 20.dp))
+            CircularProgressIndicator(
+                modifier = Modifier.size(40.dp),
+                strokeWidth = 8.dp,
+                color = MegaColor,
+                progress = progressAnimationValue
             )
         }
     }
