@@ -1,11 +1,12 @@
 package com.example.arsenalmobile.Controllers
 
+import com.example.arsenalmobile.Entity.GameInput
 import com.example.arsenalmobile.Models.Game
 import retrofit2.http.*
 
 interface GameController {
     @POST("game/new/{id}")
-    fun addGame(@Body game: Game, @Path("id") id: Long): Game
+    suspend fun addGame(@Body game: GameInput, @Path("id") id: Long): Game
 
     @PUT("game/add/user/{id}")
     suspend fun addUserToGame(@Body game: Game, @Path("id") id: Long): Game

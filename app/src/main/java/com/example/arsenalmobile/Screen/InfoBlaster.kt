@@ -25,6 +25,7 @@ import com.example.arsenalmobile.Models.User
 import com.example.arsenalmobile.ViewModels.Blaster.CardImage
 import com.example.arsenalmobile.ViewModels.Blaster.Description
 import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.NavBarColor
 import com.example.arsenalmobile.ui.theme.getColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,12 +57,11 @@ fun InfoBlaster(
                         color = Color.Black
                     )
                 },
-                backgroundColor = Color.Yellow
+                backgroundColor = NavBarColor
             )
         },
         content = {
             Column(
-
                 modifier = Modifier.background(BackColor).fillMaxWidth().fillMaxHeight().padding(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -70,7 +70,11 @@ fun InfoBlaster(
                 blaster?.let { it1 -> getColor(it1) }
                     ?.let { it2 -> ButtonDefaults.buttonColors(it2) }?.let { it3 ->
                         Button(
-                            onClick = {},
+                            onClick = {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    user.id?.let { user -> userController.addBlasterToUser(user, blasterId) }
+                                }
+                            },
                             modifier = Modifier.fillMaxWidth().padding(10.dp),
                             colors = it3
                         ) {

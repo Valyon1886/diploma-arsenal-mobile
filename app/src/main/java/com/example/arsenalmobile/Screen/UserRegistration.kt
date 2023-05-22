@@ -41,6 +41,7 @@ import com.example.arsenalmobile.R
 //import com.example.arsenalmobile.Retrofit.JobApi
 import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.Entity.UserInput
+import com.example.arsenalmobile.ui.theme.NavBarColor
 //import com.example.arsenalmobile.ScreenTasks.TaskItem
 //import com.example.arsenalmobile.ui.theme.BGColor
 import com.example.arsenalmobile.ui.theme.NavColor
@@ -137,7 +138,7 @@ fun UserRegistration(userApi: UserController, navController: NavController, auth
                         color = Color.White
                     )
                 },
-                backgroundColor = NavColor
+                backgroundColor = NavBarColor
             )
         },
         content = {

@@ -21,9 +21,11 @@ import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.MainActivity
 import com.example.arsenalmobile.Models.Game
 import com.example.arsenalmobile.Models.User
+import com.example.arsenalmobile.Navigation.Routes
 import com.example.arsenalmobile.ViewModels.Games.Description
 import com.example.arsenalmobile.ViewModels.Games.DropListUser
 import com.example.arsenalmobile.ui.theme.BoxColor
+import com.example.arsenalmobile.ui.theme.NavBarColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,7 +55,7 @@ fun InfoGame(
                         color = Color.Black
                     )
                 },
-                backgroundColor = Color.Yellow
+                backgroundColor = NavBarColor
             )
         },
         content = {
@@ -82,6 +84,7 @@ fun InfoGame(
                                 if (game?.users?.count() == game?.amount) game?.let { gameController.endActive(it) }
                             }
                         }
+                        navController.navigate("${Routes.UserGames.route}/${user.id}")
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {

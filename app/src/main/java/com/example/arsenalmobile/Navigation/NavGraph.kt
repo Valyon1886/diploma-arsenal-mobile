@@ -75,11 +75,13 @@ fun NavGraph(
         composable("profile") {
             Profile(userController, auth, mainActivity, user!!, navHostController)
         }
-        composable(Routes.UserGames.route) {
-            UserGames()
+        composable("${Routes.UserGames.route}/{id}") { navBackStack ->
+            val userId = navBackStack.arguments?.getString("id")?.toLong() ?: 0
+            UserGames(userId, userController, gameController, mainActivity, navHostController)
         }
-        composable(Routes.UserBlasters.route) {
-            UserBlasters()
+        composable("${Routes.UserBlasters.route}/{id}") { navBackStack ->
+            val userId = navBackStack.arguments?.getString("id")?.toLong() ?: 0
+            UserBlasters(userId, userController, blasterController, mainActivity, navHostController)
         }
         composable(Routes.UserTest.route) {
             UserTest()
@@ -92,7 +94,7 @@ fun NavGraph(
             InfoGame(gameId = gamerId, gameController, navHostController, userController, user!!, mainActivity)
         }
         composable(Routes.CreateGame.route) {
-            CreateGame()
+            CreateGame(gameController, userController, auth, user!!, mainActivity)
         }
         composable("blasters") {
             CatalogBlasters(userController, blasterController, auth, mainActivity, user!!, navHostController)

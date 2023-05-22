@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.sp
 import com.example.arsenalmobile.ui.theme.MegaColor
 
 @Composable
-@Preview
 fun Loading() {
     val load = "Обновление "
     val progressValue = 2f
@@ -40,17 +39,11 @@ fun Loading() {
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp
             )
-            Spacer(modifier = Modifier.width(width = 20.dp))
+            Spacer(modifier = Modifier.width(width = 30.dp))
             LinearProgressIndicator(
                 modifier = Modifier.height(8.dp),
                 color = MegaColor
             )
-//            CircularProgressIndicator(
-//                modifier = Modifier.size(40.dp),
-//                strokeWidth = 8.dp,
-//                color = MegaColor,
-//                progress = progressAnimationValue
-//            )
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.arsenalmobile.ui.theme.NavBarColor
 
 @Composable
 fun BottomNavigation(
@@ -20,7 +21,7 @@ fun BottomNavigation(
     )
 
     androidx.compose.material.BottomNavigation(
-        backgroundColor = Color.Yellow
+        backgroundColor = NavBarColor
     ) {
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRout = backStackEntry?.destination?.route

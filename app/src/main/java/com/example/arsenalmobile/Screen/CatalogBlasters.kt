@@ -31,19 +31,19 @@ import com.example.arsenalmobile.Models.User
 import com.example.arsenalmobile.R
 import com.example.arsenalmobile.ViewModels.CardBlaster
 import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.NavBarColor
 import com.google.firebase.auth.FirebaseAuth
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-@Preview
 fun CatalogBlasters(
-//    userController: UserController,
-//    blasterController: BlasterController,
-//    auth: FirebaseAuth,
-//    mainActivity: MainActivity,
-//    user: User,
-//    navController: NavController
+    userController: UserController,
+    blasterController: BlasterController,
+    auth: FirebaseAuth,
+    mainActivity: MainActivity,
+    user: User,
+    navController: NavController
 ) {
     val scope = rememberCoroutineScope()
     var filterExpand by remember { mutableStateOf(false) }
@@ -53,7 +53,7 @@ fun CatalogBlasters(
     var listBlasterFilter by remember { mutableStateOf<List<Blaster>>(emptyList()) }
 
     LaunchedEffect(true){
-//        listBlaster = blasterController.getBlasters()
+        listBlaster = blasterController.getBlasters()
         listBlasterFilter = listBlaster
     }
 
@@ -80,7 +80,7 @@ fun CatalogBlasters(
                         color = Color.Black
                     )
                 },
-                backgroundColor = Color.Yellow,
+                backgroundColor = NavBarColor,
                 actions = {
                     IconButton(onClick = {
                         filterExpand = !filterExpand
@@ -194,7 +194,7 @@ fun CatalogBlasters(
                     columns = GridCells.Fixed(2),
                     content = {
                         items(listBlasterFilter) { item ->
-//                            CardBlaster(item, navController)
+                            CardBlaster(item, navController)
                         }
                     }
                 )

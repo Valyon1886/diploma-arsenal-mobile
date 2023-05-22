@@ -23,6 +23,9 @@ interface UserController {
     @POST("user/new")
     suspend fun addUser(@Body user: UserInput): User
 
+    @POST("user/{userId}/blaster/{blasterId}")
+    suspend fun addBlasterToUser(@Path("userId") userId: Long, @Path("blasterId") blasterId: Long)
+
     @GET("user/test")
     suspend fun testos(): String = "sdfghjkl"
 

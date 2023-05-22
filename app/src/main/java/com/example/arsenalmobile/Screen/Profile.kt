@@ -38,6 +38,7 @@ import com.example.arsenalmobile.Models.UserImg
 import com.example.arsenalmobile.Navigation.Routes
 import com.example.arsenalmobile.ui.theme.BackColor
 import com.example.arsenalmobile.ui.theme.BoxColor
+import com.example.arsenalmobile.ui.theme.NavBarColor
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -141,7 +142,7 @@ fun Profile(
                         )
                     }
                 },
-                backgroundColor = Color.Yellow
+                backgroundColor = NavBarColor
             )
         },
         content = {
@@ -301,7 +302,7 @@ fun Profile(
                                 contentPadding = PaddingValues(8.dp),
                                 shape = RoundedCornerShape(15.dp),
                                 onClick = {
-                                    navController.navigate(Routes.UserGames.route)
+                                    navController.navigate("${Routes.UserGames.route}/${user.id}")
                                 }
                             ){
                                 Text(
@@ -319,7 +320,7 @@ fun Profile(
                                 contentPadding = PaddingValues(8.dp),
                                 shape = RoundedCornerShape(15.dp),
                                 onClick = {
-                                    navController.navigate(Routes.UserBlasters.route)
+                                    navController.navigate("${Routes.UserBlasters.route}/${user.id}")
                                 }
                             ){
                                 Text(
