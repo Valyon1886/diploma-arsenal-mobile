@@ -223,14 +223,14 @@ fun Profile(
                             ) {
                                 Column() {
                                     Text(
-                                        text = "12",
+                                        text = "${if (userImgSrc?.games?.count() == null) 0 else userImgSrc?.games?.count()}",
                                         modifier = Modifier.fillMaxWidth(),
                                         textAlign = TextAlign.Center,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )
                                     Text(
-                                        text = "Заказы",
+                                        text = "Игры",
                                         modifier = Modifier.fillMaxWidth(),
                                         textAlign = TextAlign.Center
                                     )
@@ -244,14 +244,14 @@ fun Profile(
                             ) {
                                 Column() {
                                     Text(
-                                        text = "2,467",
+                                        text = "${if (userImgSrc?.arsenal?.count() == null) 0 else userImgSrc?.arsenal?.count()}",
                                         modifier = Modifier.fillMaxWidth(),
                                         textAlign = TextAlign.Center,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )
                                     Text(
-                                        text = "КПД",
+                                        text = "Бластеры",
                                         modifier = Modifier.fillMaxWidth(),
                                         textAlign = TextAlign.Center
                                     )
