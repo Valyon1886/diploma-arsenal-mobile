@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.LinearProgressIndicator
@@ -17,11 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.arsenalmobile.ui.theme.LoadColor
 import com.example.arsenalmobile.ui.theme.MegaColor
 
 @Composable
 fun Loading() {
-    val load = "Обновление"
+    val load = "Обновление "
     val progressValue = 2f
     val infiniteTransition = rememberInfiniteTransition()
 
@@ -41,7 +43,7 @@ fun Loading() {
             )
             Spacer(modifier = Modifier.height(height = 10.dp))
             LinearProgressIndicator(
-                modifier = Modifier.height(8.dp),
+                modifier = Modifier.background(LoadColor).height(8.dp),
                 color = MegaColor
             )
         }
