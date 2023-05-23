@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -19,6 +20,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
+import com.example.arsenalmobile.R
+import com.example.arsenalmobile.ui.theme.BackColor
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -31,17 +35,14 @@ fun UserTest() {
 @Composable
 fun TestScreen() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.background(BackColor).fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Image(
-            painter = painterResource(R.drawable.your_image), // Замените на свою ресурсную картинку
+            painter = rememberAsyncImagePainter(model = R.mipmap.ic_launcher_new), // Замените на свою ресурсную картинку
             contentDescription = "Test Image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            contentScale = ContentScale.FillWidth
+//                contentScale = ContentScale.FillWidth
         )
         Column(
             modifier = Modifier

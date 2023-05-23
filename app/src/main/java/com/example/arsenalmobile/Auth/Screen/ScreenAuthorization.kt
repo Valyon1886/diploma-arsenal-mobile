@@ -31,6 +31,8 @@ import androidx.navigation.NavController
 import com.example.arsenalmobile.Auth.RoutesAuth
 import com.example.arsenalmobile.AuthActivity
 import com.example.arsenalmobile.R
+import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.MegaColor
 
 @OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -43,9 +45,10 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
         var showPassword by remember { mutableStateOf(false) }
 
         Column(
-            modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+            modifier = Modifier.background(BackColor).padding(start = 20.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
+
         ) {
             Box(
                 modifier = Modifier
@@ -79,6 +82,11 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                             imeAction = ImeAction.Done
                         ),
                         singleLine = true,
+                        colors = TextFieldDefaults.textFieldColors(
+                            trailingIconColor = MegaColor,
+                            focusedIndicatorColor = MegaColor,
+                            cursorColor = MegaColor,
+                            focusedLabelColor = MegaColor),
                         modifier = Modifier.fillMaxWidth(),
                         leadingIcon = {
                             Icon(
@@ -100,6 +108,11 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(25.dp),
+                        colors = TextFieldDefaults.textFieldColors(
+                            trailingIconColor = MegaColor,
+                            focusedIndicatorColor = MegaColor,
+                            cursorColor = MegaColor,
+                            focusedLabelColor = MegaColor),
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Outlined.Lock,
@@ -116,7 +129,7 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                         },
                         visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation()
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(25.dp))
                     Button(
                         onClick = {
                             val email = emailState.text
@@ -127,7 +140,7 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                             .fillMaxWidth()
                             .height(50.dp),
                         shape = RoundedCornerShape(25.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Blue)
+                        colors = ButtonDefaults.buttonColors(MegaColor)
                     ) {
                         Text(
                             text = "Войти",
@@ -156,7 +169,12 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                     .fillMaxWidth()
                     .weight(2f)
             ){
-                Column(){
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
                     Card(
                         shape = RoundedCornerShape(20.dp),
                         onClick = { navController.navigate(RoutesAuth.Phone.route) },
@@ -164,21 +182,19 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                     ){
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .background(BackColor)
                                 .padding(10.dp)
                         ) {
-                            Box(modifier = Modifier.weight(0.5f), contentAlignment = Alignment.Center){
+                            Box( contentAlignment = Alignment.Center){
                                 Icon(Icons.Default.Phone, contentDescription = "Телефон")
                             }
-                            Box(modifier = Modifier.weight(4f), contentAlignment = Alignment.CenterStart){
-                                Text(
-                                    text = "Войти с помощью номера телефона",
-                                    fontSize = 17.sp
-                                )
+
+                            Box( contentAlignment = Alignment.CenterStart){
                             }
 
                         }
                     }
+                    Spacer(modifier = Modifier.width(25.dp))
                     Card(
                         shape = RoundedCornerShape(20.dp),
                         onClick = { authActivity.signInWithGoogle() },
@@ -186,17 +202,13 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                     ){
                         Row(
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .background(BackColor)
                                 .padding(10.dp)
                         ) {
-                            Box(modifier = Modifier.weight(0.5f), contentAlignment = Alignment.Center){
+                            Box( contentAlignment = Alignment.Center){
                                 Icon(painter = painterResource(id = R.drawable.icons8_google), contentDescription = "GoogleAcc", Modifier.size(25.dp))
                             }
-                            Box(modifier = Modifier.weight(4f), contentAlignment = Alignment.CenterStart){
-                                Text(
-                                    text = "Войти с помощью Google Account",
-                                    fontSize = 17.sp
-                                )
+                            Box( contentAlignment = Alignment.CenterStart){
                             }
 
                         }
@@ -212,15 +224,10 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp)
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Вы не зарегистрированы?",
-                        color = Color.Gray,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 15.sp
-                    )
-                    Spacer(modifier = Modifier.width(20.dp))
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -229,8 +236,9 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                             ),
                         text = "Зарегистрироваться",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 15.sp,
-                        color = Color.Blue
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Center,
+                        color = MegaColor
                     )
                 }
             }

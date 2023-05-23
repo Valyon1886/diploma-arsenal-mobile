@@ -97,7 +97,7 @@ fun ActiveGames(
             )
         },
         content = {
-            Column(){
+            Column(modifier = Modifier.background(color = BackColor)){
                 AnimatedVisibility(visible = filterExpand) {
                     Column(){
                         Box(
@@ -195,20 +195,22 @@ fun ActiveGames(
                         }
                     }
                 }
+                Spacer(modifier = Modifier.height(10.dp))
                 Box(modifier = Modifier
+                    .padding(10.dp)
                     .background(color = BoxColor, shape = RoundedCornerShape(10.dp))
-                    .padding(10.dp)){
+                    ){
                     Row(
                         Modifier
                             .fillMaxWidth()
-                            .padding(5.dp),
+                            .padding(10.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "Добавить событие")
+                        Text(text = "Добавить событие", color = Color.White, fontSize = 20.sp,)
                         IconButton(
                             modifier = Modifier
-                                        .background(color = Color.Yellow)
+                                        .background(color = NavBarColor)
                                         .size(30.dp),
                             onClick = {
                                 navController.navigate(Routes.CreateGame.route)

@@ -78,7 +78,7 @@ fun InfoBlaster(
                             modifier = Modifier.fillMaxWidth().padding(10.dp),
                             colors = it3
                         ) {
-                            Text(text = "Добавить в арсенал")
+                            Text(text = "Добавить в арсенал", color = Color.White)
                         }
                     }
             }

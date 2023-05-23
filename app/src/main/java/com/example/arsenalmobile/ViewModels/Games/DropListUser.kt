@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.example.arsenalmobile.Controllers.GameController
 import com.example.arsenalmobile.Models.Game
+import com.example.arsenalmobile.ui.theme.NavBarColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,6 +30,14 @@ fun DropListUser(gameId: Long, gameController: GameController){
             onValueChange = {},
             readOnly = true,
             trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedMenuUser) },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                textColor = Color.White,
+                unfocusedBorderColor = NavBarColor,
+                focusedBorderColor = NavBarColor,
+                cursorColor = Color.White,
+                disabledTrailingIconColor = Color.White,
+                trailingIconColor = Color.White
+            ),
 
         )
         ExposedDropdownMenu(expanded = expandedMenuUser, onDismissRequest = { expandedMenuUser = false }) {

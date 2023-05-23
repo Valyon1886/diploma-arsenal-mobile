@@ -142,7 +142,7 @@ fun CreateGame(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth(),
                         text = "Добавление нового события",
-                        color = Color.White
+                        color = Color.Black
                     )
                 },
                 backgroundColor = NavBarColor
@@ -264,7 +264,9 @@ fun CreateGame(
                         .fillMaxWidth()
                         .padding(start = 10.dp, end = 10.dp)
                 )
-                Button(onClick = { uploadImage() }) {
+                Spacer(modifier = Modifier.height(10.dp))
+                Button(modifier = Modifier.fillMaxWidth()
+                    .padding(start = 80.dp, end = 80.dp), colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green, contentColor = Color.Black), onClick = { uploadImage() }) {
                     Text(text = "Создать")
                 }
             }

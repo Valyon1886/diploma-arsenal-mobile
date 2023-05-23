@@ -2,6 +2,7 @@ package com.example.arsenalmobile.Auth.Screen
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,6 +25,8 @@ import androidx.navigation.NavController
 import com.example.arsenalmobile.Auth.RoutesAuth
 import com.example.arsenalmobile.AuthActivity
 import com.example.arsenalmobile.R
+import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.MegaColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -34,7 +37,7 @@ fun ScreenRegistration(authActivity: AuthActivity, navController: NavController)
         var showPassword by remember { mutableStateOf(false) }
 
         Column(
-            modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+            modifier = Modifier.background(BackColor).padding(start = 20.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -70,6 +73,12 @@ fun ScreenRegistration(authActivity: AuthActivity, navController: NavController)
                             imeAction = ImeAction.Done
                         ),
                         singleLine = true,
+                        colors = TextFieldDefaults.textFieldColors(
+                            trailingIconColor = MegaColor,
+                            focusedIndicatorColor = MegaColor,
+                            cursorColor = MegaColor,
+                            focusedLabelColor = MegaColor
+                        ),
                         modifier = Modifier.fillMaxWidth(),
                         leadingIcon = {
                             Icon(
@@ -89,6 +98,11 @@ fun ScreenRegistration(authActivity: AuthActivity, navController: NavController)
                             imeAction = ImeAction.Done
                         ),
                         singleLine = true,
+                        colors = TextFieldDefaults.textFieldColors(
+                            trailingIconColor = MegaColor,
+                            focusedIndicatorColor = MegaColor,
+                            cursorColor = MegaColor,
+                            focusedLabelColor = MegaColor),
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(25.dp),
                         leadingIcon = {
@@ -121,7 +135,7 @@ fun ScreenRegistration(authActivity: AuthActivity, navController: NavController)
                             .fillMaxWidth()
                             .height(50.dp),
                         shape = RoundedCornerShape(25.dp),
-                        colors = ButtonDefaults.buttonColors(Color.Blue)
+                        colors = ButtonDefaults.buttonColors(MegaColor)
                     ) {
                         Text(
                             text = "Зарегистрироваться",

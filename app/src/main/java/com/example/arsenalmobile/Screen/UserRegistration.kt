@@ -41,6 +41,8 @@ import com.example.arsenalmobile.R
 //import com.example.arsenalmobile.Retrofit.JobApi
 import com.example.arsenalmobile.Controllers.UserController
 import com.example.arsenalmobile.Entity.UserInput
+import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.MegaColor
 import com.example.arsenalmobile.ui.theme.NavBarColor
 //import com.example.arsenalmobile.ScreenTasks.TaskItem
 //import com.example.arsenalmobile.ui.theme.BGColor
@@ -135,7 +137,7 @@ fun UserRegistration(userApi: UserController, navController: NavController, auth
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth(),
                         text = "Профиль",
-                        color = Color.White
+                        color = Color.Black
                     )
                 },
                 backgroundColor = NavBarColor
@@ -143,7 +145,7 @@ fun UserRegistration(userApi: UserController, navController: NavController, auth
         },
         content = {
             Column(
-                modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+                modifier = Modifier.background(BackColor).padding(start = 20.dp, end = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
@@ -202,6 +204,12 @@ fun UserRegistration(userApi: UserController, navController: NavController, auth
                                 imeAction = ImeAction.Done
                             ),
                             singleLine = true,
+                            colors = TextFieldDefaults.textFieldColors(
+                                trailingIconColor = MegaColor,
+                                focusedIndicatorColor = MegaColor,
+                                cursorColor = MegaColor,
+                                focusedLabelColor = MegaColor
+                            ),
                             modifier = Modifier.fillMaxWidth(),
                             leadingIcon = {
                                 Icon(
@@ -258,7 +266,7 @@ fun UserRegistration(userApi: UserController, navController: NavController, auth
                                 .fillMaxWidth()
                                 .height(50.dp),
                             shape = RoundedCornerShape(25.dp),
-                            colors = ButtonDefaults.buttonColors(Color.Blue)
+                            colors = ButtonDefaults.buttonColors(MegaColor)
                         ) {
                             Text(
                                 text = "Отправить",

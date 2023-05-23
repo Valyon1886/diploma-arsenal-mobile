@@ -3,6 +3,7 @@ package com.example.arsenalmobile.Screen
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +23,7 @@ import com.example.arsenalmobile.MainActivity
 import com.example.arsenalmobile.Models.Game
 import com.example.arsenalmobile.Models.User
 import com.example.arsenalmobile.ViewModels.Games.CardGame
+import com.example.arsenalmobile.ui.theme.BackColor
 import com.example.arsenalmobile.ui.theme.NavBarColor
 import com.google.firebase.auth.FirebaseAuth
 
@@ -45,7 +47,7 @@ fun UserGames(
                 title = {
                     Text(
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.background(BackColor).fillMaxWidth(),
                         text = "Мои столкновения",
                         color = Color.Black
                     )

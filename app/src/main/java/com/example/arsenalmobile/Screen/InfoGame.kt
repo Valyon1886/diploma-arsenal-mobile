@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +22,7 @@ import com.example.arsenalmobile.Navigation.Routes
 import com.example.arsenalmobile.ViewModels.Games.Description
 import com.example.arsenalmobile.ViewModels.Games.DropListUser
 import com.example.arsenalmobile.ui.theme.BoxColor
+import com.example.arsenalmobile.ui.theme.MegaColor
 import com.example.arsenalmobile.ui.theme.NavBarColor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -75,7 +73,7 @@ fun InfoGame(
                 Spacer(modifier = Modifier.height(20.dp))
                 Description(game)
                 DropListUser(gameId, gameController)
-                Button(
+                Button(colors = ButtonDefaults.buttonColors(Color.Green),
                     onClick = {
                         CoroutineScope(Dispatchers.IO).launch {
                             if((user.id != null) && (game != null)){
@@ -86,7 +84,7 @@ fun InfoGame(
                         }
                         navController.navigate("${Routes.UserGames.route}/${user.id}")
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth().padding(25.dp)
                 ) {
                     Text(text = "Откликнуться")
                 }

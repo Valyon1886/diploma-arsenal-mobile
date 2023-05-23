@@ -65,7 +65,7 @@ class AuthActivity : AppCompatActivity() {
 //        auth.currentUser
         val cUser = auth.currentUser
         if(cUser!=null){
-            Toast.makeText(this, "Пора работать!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Выполняется вход", Toast.LENGTH_SHORT).show()
         }
         else{
             Toast.makeText(this, "Добро пожаловать", Toast.LENGTH_SHORT).show()

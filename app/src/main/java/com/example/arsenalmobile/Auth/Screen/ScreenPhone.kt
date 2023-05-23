@@ -6,6 +6,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -28,6 +29,8 @@ import androidx.navigation.NavController
 import com.example.arsenalmobile.Auth.RoutesAuth
 import com.example.arsenalmobile.AuthActivity
 import com.example.arsenalmobile.R
+import com.example.arsenalmobile.ui.theme.BackColor
+import com.example.arsenalmobile.ui.theme.MegaColor
 import com.google.firebase.auth.PhoneAuthProvider
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -39,7 +42,9 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
         var expanded by remember { mutableStateOf(false) }
 
         Column(
-            modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+            modifier = Modifier
+                .background(BackColor)
+                .padding(start = 20.dp, end = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -80,12 +85,14 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
 
                                 phoneState.text.forEachIndexed { index, char ->
                                     DuckieTextFieldCharContainer(
+                                        modifier = Modifier.border(1.dp, Color.Gray, CircleShape),
                                         text = char,
-                                        isFocused = index == phoneState.text.lastIndex,
+                                        isFocused = false//index == phoneState.text.lastIndex,
                                     )
                                 }
                                 repeat(12 - phoneState.text.length) {
                                     DuckieTextFieldCharContainer(
+                                        modifier = Modifier.border(1.dp, Color.Gray, CircleShape),
                                         text = ' ',
                                         isFocused = false,
                                     )
@@ -105,6 +112,11 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
                             ),
                             singleLine = true,
                             modifier = Modifier.fillMaxWidth(),
+                            colors = TextFieldDefaults.textFieldColors(
+                                trailingIconColor = MegaColor,
+                                focusedIndicatorColor = MegaColor,
+                                cursorColor = MegaColor,
+                            focusedLabelColor = MegaColor),
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(id = R.drawable.baseline_vpn_key_24),
@@ -112,6 +124,7 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
                                 )
                             },
                             shape = RoundedCornerShape(25.dp)
+
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
@@ -129,7 +142,7 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
                                     .fillMaxWidth()
                                     .height(50.dp),
                                 shape = RoundedCornerShape(25.dp),
-                                colors = ButtonDefaults.buttonColors(Color.Blue)
+                                colors = ButtonDefaults.buttonColors(MegaColor)
                             ) {
                                 Text(
                                     text = "Отправить код",
@@ -154,7 +167,7 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
                                     .fillMaxWidth()
                                     .height(50.dp),
                                 shape = RoundedCornerShape(25.dp),
-                                colors = ButtonDefaults.buttonColors(Color.Blue)
+                                colors = ButtonDefaults.buttonColors(MegaColor)
                             ) {
                                 Text(
                                     text = "Подтвердить",
