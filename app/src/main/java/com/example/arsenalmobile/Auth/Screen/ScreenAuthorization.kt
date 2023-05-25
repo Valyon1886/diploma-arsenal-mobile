@@ -102,7 +102,7 @@ fun ScreenAuthorization(authActivity: AuthActivity, navController: NavController
                         onValueChange = { passwordState = it },
                         label = { Text("Пароль") },
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
+                            keyboardType = KeyboardType.Text,
                             imeAction = ImeAction.Done
                         ),
                         singleLine = true,
