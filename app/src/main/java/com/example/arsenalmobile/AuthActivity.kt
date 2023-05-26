@@ -79,7 +79,7 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
             catch (e: ApiException){
-                Log.d("MyLog", "Api exception")
+                Log.d("MyLog", "Что-то пошло не так")
             }
         }
         checkAuthState()
@@ -103,7 +103,7 @@ class AuthActivity : AppCompatActivity() {
         if(!email.isEmpty() && !password.isEmpty()) {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Вошли в аккаунт успешно", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Выполнен вход в аккаунт", Toast.LENGTH_SHORT).show()
                     checkAuthState()
                 } else {
                     Toast.makeText(this, "Пользователь не найден", Toast.LENGTH_SHORT).show()
@@ -130,11 +130,11 @@ class AuthActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener{
             if(it.isSuccessful){
-                Log.d("MyLog", "Все круто!")
+                Log.d("MyLog", "ОК")
                 checkAuthState()
             }
             else{
-                Log.d("MyLog", "Все не круто!")
+                Log.d("MyLog", "Что-то пошло не так")
             }
         }
     }
@@ -184,10 +184,10 @@ class AuthActivity : AppCompatActivity() {
         auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("MyLog", "Все круто!")
+                    Log.d("MyLog", "OK")
                     checkAuthState()
                 } else {
-                    Log.d("MyLog", "Все не круто!")
+                    Log.d("MyLog", "Что-то пошло не так")
                 }
             }
     }

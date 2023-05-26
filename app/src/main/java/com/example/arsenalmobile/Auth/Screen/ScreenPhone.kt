@@ -146,6 +146,7 @@ fun ScreenPhone(authActivity: AuthActivity, navController: NavController){
                             ) {
                                 Text(
                                     text = "Отправить код",
+                                    textAlign = TextAlign.Center,
                                     fontSize = 15.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = Color.White

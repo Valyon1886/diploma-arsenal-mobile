@@ -123,7 +123,7 @@ fun ScreenRegistration(authActivity: AuthActivity, navController: NavController)
                         },
                         visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation()
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(25.dp))
                     Button(
                         onClick = {
                             val email = emailState.text
